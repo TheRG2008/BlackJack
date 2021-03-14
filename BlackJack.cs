@@ -17,6 +17,7 @@ namespace Black_Jack
             int dillerCard1 = 0;
             int dillerCard2 = 0;
             int dillerScore = 0;
+            int[] cards = new int[10];
            
 
             Console.WriteLine($"Добро пожаловать в наше казино! Есть одно свободное место за столом Black Jack!");
@@ -31,6 +32,16 @@ namespace Black_Jack
                 gold = BJ.GetGold(rate, gold);
                 Console.WriteLine("Диллер сдает карты");
                 Console.WriteLine("Вам раздали 2 карты");
+
+                for (int i = 0; i < 2; i++)
+                {
+                    cards[i] = BJ.GetCard();
+                    Console.WriteLine($"{cards[i]}");
+                    score += cards[i];
+                }
+
+                Console.WriteLine($"Всего очков: {score}");
+                Console.ReadKey();
 
                 card1 =  BJ.GetCard();                
                 card2 = BJ.GetCard();                
