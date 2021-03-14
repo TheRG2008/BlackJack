@@ -9,15 +9,16 @@ namespace Black_Jack
 
             int gold = 300;
             int rate = 0;            
-            int card = 0;
-            int card1 = 0;
-            int card2 = 0;
+            //int card = 0;
+            //int card1 = 0;
+            //int card2 = 0;
             int score = 0;
             int dillerCard = 0;
             int dillerCard1 = 0;
             int dillerCard2 = 0;
             int dillerScore = 0;
             int[] cards = new int[10];
+            int[] dillerCards = new int[10];
            
 
             Console.WriteLine($"Добро пожаловать в наше казино! Есть одно свободное место за столом Black Jack!");
@@ -39,8 +40,7 @@ namespace Black_Jack
                     score += cards[i];
                 }
 
-                Console.WriteLine($"Всего очков: {score}");
-                Console.ReadKey();
+                score = BJ.CardsSum(cards);
 
                 //card1 =  BJ.GetCard();                
                 //card2 = BJ.GetCard();                
@@ -48,7 +48,7 @@ namespace Black_Jack
                 //Console.WriteLine($"Всего очков: {score}");
                 //Console.ReadKey();
 
-               
+
                 if (score == 21)
                 {
                     gold = BJ.PlayerWin(gold, rate);                 
@@ -71,8 +71,7 @@ namespace Black_Jack
                             }
                         }
 
-                        Console.WriteLine($"Всего очков {score}");
-                        Console.ReadKey();
+                        score = BJ.CardsSum(cards);
 
                         if (score > 21)
                         {
@@ -81,26 +80,34 @@ namespace Black_Jack
                                 if (cards[i] == 11)
                                 {
                                     cards[i] = 1;
+                                    break;
                                 }
                             }
-                            BJ.CardsSum(cards);
-                            Console.WriteLine($"Всего очков {score}");
-                            Console.ReadKey();
+                            score = BJ.CardsSum(cards);
 
-
-                            if (card1 == 11 || card2 == 11 || card == 11)
-                            {
-                                score = BJ.CheckAce(ref card1, ref card2, ref card);
-                                Console.WriteLine($"Всего очков {score}");
-                                Console.ReadKey();
-                                continue;
-                            }
-                            else
+                            if (score > 21)
                             {
                                 Console.WriteLine("Вы проиграли!");
                                 Console.ReadKey();
                                 goto Game;
                             }
+                            else continue;
+
+
+
+                            //if (card1 == 11 || card2 == 11 || card == 11)
+                            //{
+                            //    score = BJ.CheckAce(ref card1, ref card2, ref card);
+                            //    Console.WriteLine($"Всего очков {score}");
+                            //    Console.ReadKey();
+                            //    continue;
+                            //}
+                            //else
+                            //{
+                            //    Console.WriteLine("Вы проиграли!");
+                            //    Console.ReadKey();
+                            //    goto Game;
+                            //}
      
                         }
                         else if (score == 21)
@@ -112,6 +119,14 @@ namespace Black_Jack
                     }
                     else
                     {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            dillerCards[i] = BJ.GetCard();
+                            dillerScore += dillerCards[i];
+                        }
+
+                        dillerScore = BJ.CardsSum(cards);
+
                         Console.WriteLine("Играет диллер");
                         dillerCard1 = BJ.GetCard();                        
                         dillerCard2 = BJ.GetCard();
