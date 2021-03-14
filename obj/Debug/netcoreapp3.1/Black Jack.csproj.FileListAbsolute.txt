@@ -1,0 +1,13 @@
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\bin\Debug\netcoreapp3.1\Black Jack.exe
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\bin\Debug\netcoreapp3.1\Black Jack.deps.json
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\bin\Debug\netcoreapp3.1\Black Jack.runtimeconfig.json
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\bin\Debug\netcoreapp3.1\Black Jack.runtimeconfig.dev.json
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\bin\Debug\netcoreapp3.1\Black Jack.dll
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\bin\Debug\netcoreapp3.1\Black Jack.pdb
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\obj\Debug\netcoreapp3.1\Black Jack.csprojAssemblyReference.cache
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\obj\Debug\netcoreapp3.1\Black Jack.AssemblyInfoInputs.cache
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\obj\Debug\netcoreapp3.1\Black Jack.AssemblyInfo.cs
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\obj\Debug\netcoreapp3.1\Black Jack.csproj.CoreCompileInputs.cache
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\obj\Debug\netcoreapp3.1\Black Jack.dll
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\obj\Debug\netcoreapp3.1\Black Jack.pdb
+D:\GeekBrains Факультет разработки игр\Обучение\Подготовка\2. Знакомство с С#\Hello world\Black Jack\obj\Debug\netcoreapp3.1\Black Jack.genruntimeconfig.cache
