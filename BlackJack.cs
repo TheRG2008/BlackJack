@@ -35,19 +35,18 @@ namespace Black_Jack
 
                 for (int i = 0; i < 2; i++)
                 {
-                    cards[i] = BJ.GetCard();
-                    Console.WriteLine($"{cards[i]}");
+                    cards[i] = BJ.GetCard();                    
                     score += cards[i];
                 }
 
                 Console.WriteLine($"Всего очков: {score}");
                 Console.ReadKey();
 
-                card1 =  BJ.GetCard();                
-                card2 = BJ.GetCard();                
-                score = card1 + card2;
-                Console.WriteLine($"Всего очков: {score}");
-                Console.ReadKey();
+                //card1 =  BJ.GetCard();                
+                //card2 = BJ.GetCard();                
+                //score = card1 + card2;
+                //Console.WriteLine($"Всего очков: {score}");
+                //Console.ReadKey();
 
                
                 if (score == 21)
@@ -62,14 +61,33 @@ namespace Black_Jack
                     char next = Console.ReadKey(true).KeyChar;
                     if (next == 'y')
                     {
-                        card = BJ.GetCard();                       
-                        score += card;
+                        for (int i = 0; i < cards.Length; i++)
+                        {
+                            if (cards[i] == 0)
+                            {
+                                cards[i] = BJ.GetCard();
+                                score += cards[i];
+                                break;
+                            }
+                        }
 
                         Console.WriteLine($"Всего очков {score}");
                         Console.ReadKey();
 
                         if (score > 21)
                         {
+                            for (int i = 0; i < cards.Length; i++)
+                            {
+                                if (cards[i] == 11)
+                                {
+                                    cards[i] = 1;
+                                }
+                            }
+                            BJ.CardsSum(cards);
+                            Console.WriteLine($"Всего очков {score}");
+                            Console.ReadKey();
+
+
                             if (card1 == 11 || card2 == 11 || card == 11)
                             {
                                 score = BJ.CheckAce(ref card1, ref card2, ref card);
