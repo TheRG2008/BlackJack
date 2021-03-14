@@ -16,6 +16,8 @@ namespace Black_Jack
             int random = r1.Next(1, 14);
             return random;
         }
+
+
         /// <summary>
         /// Генерирует название карты
         /// </summary>
@@ -42,6 +44,9 @@ namespace Black_Jack
             }
             return cardName;
         }
+
+
+
         /// <summary>
         /// Присваивает значение для сгенерированной карты
         /// </summary>
@@ -68,12 +73,15 @@ namespace Black_Jack
             }
             return cardValue;
         }
+
+
+
         /// <summary>
         /// Продолжаем играть или нет
         /// </summary>
         public static void NewGame()
         {
-
+            Console.Clear();
             Console.WriteLine($"Желаете сыграть? - Y/N");
             char newGame = Console.ReadKey(true).KeyChar;
             if (newGame != 'y')
@@ -84,6 +92,9 @@ namespace Black_Jack
             } 
 
         }
+
+
+
         /// <summary>
         /// Определяет ставку Игрока
         /// </summary>
@@ -104,6 +115,11 @@ namespace Black_Jack
                 Console.WriteLine("У вас недостаточно денег, сделайте другую ставку!");
                 goto Rate;
             }
+            else if (rate < 50)
+            {
+                Console.WriteLine("Минимальная ставка - 50$");
+                goto Rate;
+            }
             else
             {
                 gold -= rate;
@@ -113,6 +129,10 @@ namespace Black_Jack
             return rate;
             
         }
+
+
+
+
         /// <summary>
         /// Определяет сколько осталось денег
         /// </summary>
@@ -124,6 +144,9 @@ namespace Black_Jack
             gold -= rate;
             return gold;
         }
+
+
+
         /// <summary>
         /// Выход из игры
         /// </summary>
@@ -131,6 +154,9 @@ namespace Black_Jack
         {
             Environment.Exit(0);
         }
+
+
+
         /// <summary>
         /// Генерирует случайную карту
         /// </summary>
@@ -148,34 +174,11 @@ namespace Black_Jack
             int value = cardValue;
             return value;
 
-        }
-        /// <summary>
-        /// Проверяет наличие Туза, если перебор
-        /// </summary>
-        /// <param name="card1"></param>
-        /// <param name="card2"></param>
-        /// <param name="card"></param>
-        /// <returns>Возвращает итоговую сумму значений карт</returns>
-        public static int CheckAce(ref int card1,  ref int card2, ref int card)
-        {
-            int score = 0;
-            if (card1 == 11) 
-            {
-                card1 = 1;
-                return score  = card1 + card2 + card; 
-            } 
-            else if (card2 == 11)
-            {
-                card2 = 1;
-                return score = card2 + card1 + card;
-            }
-            else if (card == 11)
-            {
-                card = 1; 
-                return score = card + card1 + card2;
-            }
-            else return score = card + card1 + card2;
-        }
+        }      
+
+
+
+
         /// <summary>
         /// Победа игрока
         /// </summary>
@@ -190,11 +193,84 @@ namespace Black_Jack
             return gold;
         }
 
+        public static int CardsSum(int[] sum)
+        {
+            int sumAll = 0;
+            for (int i = 0; i < sum.Length; i++)
+            {
+                sumAll += sum[i];               
+            }
+            Console.WriteLine($"Всего очков {sumAll}");
+            Console.ReadKey();
+            return sumAll;
+        }
+
+        public static int CheckAce(int[] ace)
+        {
+            int result = 0;
+            for (int i = 0; i < ace.Length; i++)
+            {
+                if (ace[i] == 11)
+                {
+                    ace[i] = 1;
+                    break;
+                }
+
+            }
+            result = CardsSum(ace);
+            return result;
+
+        }
+
+        public static void ClearMassiv(int[] ace)
+        {
+            
+            for (int i = 0; i < ace.Length; i++)
+            {
+                ace[i] = 0;                            
+
+            }
+
+        }
 
 
 
+        public static int GetTwoCards(int[] cards)
+        {
+            int score = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                cards[i] = BJ.GetCard();
+                score += cards[i];
+            }
 
+            return score;
 
+        }
+
+        public static int GetOneCards(int[] cards)
+        {
+            int score = 0;
+            for (int i = 0; i < cards.Length; i++)
+            {
+                if (cards[i] == 0)
+                {
+                    cards[i] = BJ.GetCard();
+                    score += cards[i];
+                    break;
+                }
+            }
+            score = CardsSum(cards);
+
+            return score;
+
+        }
+
+        public static void Print (string text)
+        {
+            Console.WriteLine(text);
+            Console.ReadKey();
+        }
 
 
 

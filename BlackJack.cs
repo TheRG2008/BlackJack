@@ -7,38 +7,30 @@ namespace Black_Jack
         static void Main(string[] args)
         {
 
-            int gold = 300;
-            int rate = 0;            
-            int card = 0;
-            int card1 = 0;
-            int card2 = 0;
-            int score = 0;
-            int dillerCard = 0;
-            int dillerCard1 = 0;
-            int dillerCard2 = 0;
-            int dillerScore = 0;
-           
+            int gold = 300, rate = 0, score = 0, dillerScore = 0;           
+            int[] playerCards = new int[10];
+            int[] dillerCards = new int[10];           
 
-            Console.WriteLine($"Добро пожаловать в наше казино! Есть одно свободное место за столом Black Jack!");
+            BJ.Print($"Добро пожаловать в наше казино! Есть одно свободное место за столом Black Jack!");         
             
             Game:
 
             while (gold != 0)
             {
-                Console.Clear();
+
+                BJ.ClearMassiv(playerCards);
+                BJ.ClearMassiv(dillerCards);
+                
                 BJ.NewGame();
                 rate = BJ.GetRate(gold);
                 gold = BJ.GetGold(rate, gold);
-                Console.WriteLine("Диллер сдает карты");
-                Console.WriteLine("Вам раздали 2 карты");
 
-                card1 =  BJ.GetCard();                
-                card2 = BJ.GetCard();                
-                score = card1 + card2;
-                Console.WriteLine($"Всего очков: {score}");
-                Console.ReadKey();
+                BJ.Print("Диллер сдает карты");
+                BJ.Print("Вам раздали 2 карты");
 
-               
+
+                score = BJ.GetTwoCards(playerCards);
+
                 if (score == 21)
                 {
                     gold = BJ.PlayerWin(gold, rate);                 
@@ -51,28 +43,19 @@ namespace Black_Jack
                     char next = Console.ReadKey(true).KeyChar;
                     if (next == 'y')
                     {
-                        card = BJ.GetCard();                       
-                        score += card;
-
-                        Console.WriteLine($"Всего очков {score}");
-                        Console.ReadKey();
+                        score = BJ.GetOneCards(playerCards);                        
 
                         if (score > 21)
                         {
-                            if (card1 == 11 || card2 == 11 || card == 11)
+                            score = BJ.CheckAce(playerCards);
+   
+                            if (score > 21)
                             {
-                                score = BJ.CheckAce(ref card1, ref card2, ref card);
-                                Console.WriteLine($"Всего очков {score}");
-                                Console.ReadKey();
-                                continue;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Вы проиграли!");
-                                Console.ReadKey();
+                                BJ.Print("Вы проиграли!");                                
                                 goto Game;
                             }
-     
+                            else continue;
+
                         }
                         else if (score == 21)
                         {
@@ -83,59 +66,54 @@ namespace Black_Jack
                     }
                     else
                     {
-                        Console.WriteLine("Играет диллер");
-                        dillerCard1 = BJ.GetCard();                        
-                        dillerCard2 = BJ.GetCard();
-                        dillerScore = dillerCard1 + dillerCard2;
+                        BJ.Print("Играет диллер");
 
-                        DillerGame:
+                        dillerScore = BJ.GetTwoCards(dillerCards);
+
+
+                    DillerGame:
 
                         if (dillerScore > 21)
                         {
-                            if (dillerCard1 == 11 || dillerCard2 == 11 || dillerCard == 11)
+                            dillerScore = BJ.CheckAce(dillerCards);
+
+                            if (dillerScore > 21)
                             {
-                                dillerScore = BJ.CheckAce(ref dillerCard1, ref dillerCard2, ref dillerCard);
-                                Console.WriteLine($"Диллер набрал {dillerScore} очков");
-                                Console.ReadKey();
-                                goto DillerGame;
-                            }
-                            else
-                            {
-                                Console.WriteLine("У Диллера - перебор");
+                                BJ.Print("У Диллера - перебор!");                                
                                 gold = BJ.PlayerWin(gold, rate);
                                 goto Game;
-                            }                               
-    
+                            }
+
                         }
                         else if (dillerScore >= 16 && dillerScore <=21)
                         {
-                            Console.WriteLine($"Диллер набрал {dillerScore} очков");
+                            BJ.Print($"Диллер набрал {dillerScore} очков");
                             if (dillerScore > score)
                             {
-                                Console.WriteLine("Вы проиграли!");
+                                BJ.Print("Вы проиграли!");
                                 goto Game;
                             }
                             else if (dillerScore < score)
                             {
-                                Console.WriteLine($"Диллер набрал {dillerScore} очков");
+                                BJ.Print($"Диллер набрал {dillerScore} очков");
                                 gold = BJ.PlayerWin(gold, rate);
                                 goto Game;
                             }
                             else if (dillerScore == score)
                             {
-                                Console.WriteLine($"Диллер набрал {dillerScore} очков");
-                                Console.WriteLine("Ничья");
-                                Console.ReadKey();
+                                BJ.Print($"Диллер набрал {dillerScore} очков");
+                                BJ.Print("Ничья");                                
                                 gold += rate;
                                 goto Game;
                             }
                         }
                         else if (dillerScore < 16)
                         {
-                            Console.WriteLine($"Диллер берет еще карту");
-                            dillerCard = BJ.GetCard();
-                            dillerScore += dillerCard;
-                            Console.WriteLine($"Диллер набрал {dillerScore} очков");
+                            BJ.Print($"Диллер берет еще карту");
+
+                            dillerScore = BJ.GetOneCards(dillerCards);
+
+                            BJ.Print($"Диллер набрал {dillerScore} очков");
                             goto DillerGame;
                         }
                         Console.ReadKey();
@@ -144,6 +122,11 @@ namespace Black_Jack
 
                 }
             }
+
+
+
+
+
 
             Console.WriteLine("Вы проиграли все деньги, покиньте наше казино");
             Console.ReadKey();
