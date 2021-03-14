@@ -4,7 +4,20 @@ using System.Text;
 
 namespace Black_Jack
 {
-    class Class1
+    class Inventory
     {
+         public int price { get; set; } 
+
+         public string name { get; set; }
+
+
+
+
+
+
+
+
     }
+
+    
 }

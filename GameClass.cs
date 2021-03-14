@@ -6,10 +6,7 @@ namespace Black_Jack
 {
     class BJ
     {
-        /// <summary>
-        /// Рандомное число для генерации карты
-        /// </summary>
-        /// <returns>Возвращает случайное число от 2 до 14 </returns>
+        
         public static int RandomNumber()
         {
             var r1 = new Random();
@@ -18,11 +15,7 @@ namespace Black_Jack
         }
 
 
-        /// <summary>
-        /// Генерирует название карты
-        /// </summary>
-        /// <param name="random"></param>
-        /// <returns>Возвращает название карты</returns>
+       
         public static string GetCardName(int random)
         {
             string cardName = " ";
@@ -47,11 +40,7 @@ namespace Black_Jack
 
 
 
-        /// <summary>
-        /// Присваивает значение для сгенерированной карты
-        /// </summary>
-        /// <param name="random"></param>
-        /// <returns>Возвращает значение карты</returns>
+      
         public static int GetCardValue(int random)
         {
             int cardValue = 0;
@@ -76,9 +65,6 @@ namespace Black_Jack
 
 
 
-        /// <summary>
-        /// Продолжаем играть или нет
-        /// </summary>
         public static void NewGame()
         {
             Console.Clear();
@@ -95,11 +81,7 @@ namespace Black_Jack
 
 
 
-        /// <summary>
-        /// Определяет ставку Игрока
-        /// </summary>
-        /// <param name="gold"></param>
-        /// <returns></returns>
+     
         public static int GetRate(int gold)
         {
             int rate;
@@ -133,12 +115,7 @@ namespace Black_Jack
 
 
 
-        /// <summary>
-        /// Определяет сколько осталось денег
-        /// </summary>
-        /// <param name="rate"></param>
-        /// <param name="gold"></param>
-        /// <returns></returns>
+      
         public static int GetGold(int rate, int gold)
         {
             gold -= rate;
@@ -147,9 +124,7 @@ namespace Black_Jack
 
 
 
-        /// <summary>
-        /// Выход из игры
-        /// </summary>
+       
         public static void EndGame()
         {
             Environment.Exit(0);
@@ -157,10 +132,7 @@ namespace Black_Jack
 
 
 
-        /// <summary>
-        /// Генерирует случайную карту
-        /// </summary>
-        /// <returns>Возвращает значение этой карты</returns>
+      
         public static int GetCard()
         {
 
@@ -179,12 +151,7 @@ namespace Black_Jack
 
 
 
-        /// <summary>
-        /// Победа игрока
-        /// </summary>
-        /// <param name="gold"></param>
-        /// <param name="rate"></param>
-        /// <returns>Возвращает кол-во денег у игрока</returns>
+    
         public static int PlayerWin(int gold, int rate)
         {
             Console.WriteLine("Вы победили!");
